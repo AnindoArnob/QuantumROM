@@ -29,6 +29,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+    - name: Install F2FS dependencies
+  run: sudo apt-get update && sudo apt-get install -y f2fs-tools
+
     - name: Checkout repository
       uses: actions/checkout@v4
   
@@ -189,6 +193,9 @@ jobs:
     - name: Cleanup
       run: |
         rm -rf *
+
+
+      
 
 
     - name: Upload to GitHub Release
