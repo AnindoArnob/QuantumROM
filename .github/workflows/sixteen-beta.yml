@@ -189,3 +189,19 @@ jobs:
     - name: Cleanup
       run: |
         rm -rf *
+
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        run: |
+          gh release create $GITHUB_REF_NAME \
+            --title "Release $GITHUB_REF_NAME" \
+            --notes "Automated release"
